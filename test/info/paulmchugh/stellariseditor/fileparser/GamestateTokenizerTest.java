@@ -2,7 +2,7 @@ package test.info.paulmchugh.stellariseditor.fileparser;
 
 import org.junit.Test;
 
-public class SaveFileTokenTest
+public class GamestateTokenizerTest
 {
 	@Test
 	public void testTokenQueueGenerate()
