@@ -1,2 +1,2 @@
-/info/paulmchugh/stellariseditor/fileparser/tests/resources/gamestate
-/info/paulmchugh/stellariseditor/fileparser/tests/resources/*.sav
+*.idea
+*.iml
