@@ -1,5 +1,7 @@
 package info.paulmchugh.stellariseditor.fileparser;
 
+import info.paulmchugh.stellariseditor.fileparser.tokens.SaveFileToken;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
