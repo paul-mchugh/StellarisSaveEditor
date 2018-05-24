@@ -26,7 +26,7 @@ public class StellarisSaveFile
 		
 		try
 		{
-			Queue<SaveFileToken> tokens = SaveFileToken.generateTokenQueueFromGamestate(gamestate);
+			Queue<SaveFileToken> tokens = GamestateTokenizer.generateTokenQueueFromGamestate(gamestate);
 			tokens.peek();
 		}
 		catch (StellarisSaveFileParseException|IOException e)
