@@ -12,7 +12,7 @@ public class GamestateTokenizer
 {
 	public static Deque<SaveFileToken> generateTokenQueueFromGamestate(InputStream gamestateInput) throws IOException, StellarisSaveFileParseException
 	{
-		Deque<SaveFileToken> tokens = new LinkedList<SaveFileToken>();
+		Deque<SaveFileToken> tokens = new LinkedList<>();
 		BufferedInputStream gamestate = new BufferedInputStream(gamestateInput);
 		
 		//information about the previous bytes in the stream

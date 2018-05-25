@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class StringToken extends SaveFileToken
 {
-	String value;
+	private String value;
 	public StringToken(String value)
 	{
 		super(TokenTypes.STRING);
