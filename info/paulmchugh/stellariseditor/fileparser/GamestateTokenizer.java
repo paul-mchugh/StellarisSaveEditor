@@ -108,6 +108,20 @@ public class GamestateTokenizer
 				//if we reached the end of the file then we break out
 				if (input==-1)break;
 			}
+			else if (input==-1)
+			{
+				//this IS the EOF, but it IS NOT the end of the end of a multichar token.
+				//one of two things is true either this end came after a token that was already terminated or this is the end of an unterminated string
+				//if this is after an already terminated token then we need to break out.  If it is an unterminated string then we throw an exception
+				if (isQuotedString)
+				{
+					throw new StellarisSaveFileParseException("Illegal Token: Quoted object is terminated by EOF not an end qoute on line = " + lineNo);
+				}
+				else
+				{
+					break;
+				}
+			}
 			else
 			{
 				//KEEP ON BUILDING THE CURRENT WORD OR PROCESS THE SINGLE CHAR TOKEN
@@ -138,8 +152,6 @@ public class GamestateTokenizer
 					else if (currentChar=='{')tokens.addLast(new SaveFileToken(TokenTypes.GROUP_OPEN));
 					else tokens.addLast(new SaveFileToken(TokenTypes.GROUP_CLOSE));
 					
-					//if we reached the end of the file then we break out
-					if (input==-1) break;
 				}
 				else if (currentChar>32)
 				{

@@ -1,0 +1,6 @@
+outer_group =
+{
+    inner_array = { "one" "two" "\\three" "four\\" "five"}
+    0 ={ 1 2 3}
+    1= "word"
+}
