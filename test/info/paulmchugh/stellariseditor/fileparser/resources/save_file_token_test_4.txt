@@ -1,0 +1,11 @@
+group_with_strings =
+{
+    "\\"
+    "\""
+    "{"
+    "="
+    "}"
+    "strings with spaces"
+    "ordinary_string"
+    "string with lots of potentially problematic components \\ \" { = } done"
+}
