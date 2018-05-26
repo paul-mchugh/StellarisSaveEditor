@@ -90,6 +90,22 @@ public class GamestateTokenizerTest
 		Assert.assertEquals(expectedTokenQueue, actualTokenQueue);
 	}
 	
+	//tests for improperly terminated strings
+	@Test
+	public void test3InvalidFile() throws IOException
+	{
+		try
+		{
+			//save_file_token_test_3.txt contains a StringToken at the end with no terminator quote
+			tokenQueueFromTestFile("/test/info/paulmchugh/stellariseditor/fileparser/resources/save_file_token_test_3.txt");
+			Assert.fail("Was supposed to throw exception on invalid file but didn't");
+		}
+		catch (StellarisSaveFileParseException e)
+		{
+			//was supposed to fail
+		}
+	}
+	
 	private static Deque<SaveFileToken> tokenQueueFromTestFile(String path) throws IOException, StellarisSaveFileParseException
 	{
 		//get the instream from the uncompressed resource file

@@ -40,7 +40,7 @@ public class GamestateTokenizer
 			//we do different things if we are in a string
 			boolean multiCharTokenComplete = false;
 			
-			if (input==-1)multiCharTokenComplete=true;
+			if (input==-1&&!isQuotedString)multiCharTokenComplete=true;
 			
 			
 			if (isQuotedString)
@@ -125,7 +125,7 @@ public class GamestateTokenizer
 			else
 			{
 				//KEEP ON BUILDING THE CURRENT WORD OR PROCESS THE SINGLE CHAR TOKEN
-				if (currentChar == '=' || currentChar == '{' || currentChar == '}')
+				if ((currentChar == '=' || currentChar == '{' || currentChar == '}')&&!isQuotedString)
 				{
 					//single char token
 					SaveFileToken lastToken = tokens.peekLast();
