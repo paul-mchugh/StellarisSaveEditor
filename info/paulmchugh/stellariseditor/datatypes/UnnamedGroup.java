@@ -6,6 +6,12 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 {
 	
 	@Override
+	public SaveElementTypes getElementType()
+	{
+		return SaveElementTypes.UNNAMED_GROUP;
+	}
+	
+	@Override
 	public String getSaveRepresentation(int indents)
 	{
 		//each indent is one tab
