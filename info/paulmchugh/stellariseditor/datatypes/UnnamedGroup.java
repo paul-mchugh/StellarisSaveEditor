@@ -32,7 +32,17 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 		for(T childElement : this)
 		{
 			result.append(childElement.getSaveRepresentation(indents + 1));
-			result.append('\n');
+			
+			//if if this UnnamedGroup's children are also groups (of either kind) then they all get their own line
+			if (childElement instanceof StellarisGroup)
+			{
+				result.append('\n');
+			}
+			else
+			{
+				//if this UnnamedGroup's children are not groups then they get a space to seperate them
+				result.append(' ');
+			}
 		}
 		
 		result.append(indentString);
