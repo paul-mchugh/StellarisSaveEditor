@@ -22,6 +22,7 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 			indentStringBuilder.append('\t');
 		}
 		String indentString = indentStringBuilder.toString();
+		boolean shouldAppendFinalIndent = false;
 		
 		//build the result string from the opening and closing group symbols and child elements
 		StringBuilder result = new StringBuilder();
@@ -37,15 +38,17 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 			if (childElement instanceof StellarisGroup)
 			{
 				result.append('\n');
+				shouldAppendFinalIndent = true;
 			}
 			else
 			{
 				//if this UnnamedGroup's children are not groups then they get a space to seperate them
 				result.append(' ');
+				shouldAppendFinalIndent = false;
 			}
 		}
 		
-		result.append(indentString);
+		if (shouldAppendFinalIndent) result.append(indentString);
 		result.append('}');
 		
 		return result.toString();
