@@ -132,7 +132,10 @@ public class NamedGroup implements StellarisGroup
 	//this method sets the keyPrintOrder
 	public void setKeyPrintOrder(ArrayList<String> keyPrintOrder)
 	{
-		this.keyPrintOrder = keyPrintOrder;
+		if (keyPrintOrder != null)
+		{
+			this.keyPrintOrder = keyPrintOrder;
+		}
 	}
 	
 	@Override
@@ -150,6 +153,60 @@ public class NamedGroup implements StellarisGroup
 	@Override
 	public String getSaveRepresentation(int indents)
 	{
-		return null;
+		//each indent is one tab
+		//create the string of indents to prepend the elements inside
+		StringBuilder indentStringBuilder = new StringBuilder();
+		for(int i = 0; i < indents; i++)
+		{
+			indentStringBuilder.append('\t');
+		}
+		String indentString = indentStringBuilder.toString();
+		
+		//build the result string from the opening and closing group symbols and child elements
+		StringBuilder result = new StringBuilder();
+		result.append(indentString);
+		result.append('{');
+		result.append('\n');
+		
+		//first iterate through the keyPrintOrder and print all the children in the order they appear there
+		for(String key : keyPrintOrder)
+		{
+			if (keyValueMappings.containsKey(key))
+			{
+				for (SaveElement value : keyValueMappings.get(key))
+				{
+					appendKVToStringBuilder(result, key, value, indents);
+				}
+			}
+		}
+		
+		//then print all the remaining keys and values that are not on the printOrder in alphebetic order
+		for (String key : keyValueMappings.keySet())
+		{
+			if (!keyPrintOrder.contains(key))
+			{
+				for (SaveElement value : keyValueMappings.get(key))
+				{
+					appendKVToStringBuilder(result, key, value, indents);
+				}
+			}
+		}
+		
+		
+		result.append('}');
+		
+		return result.toString();
+	}
+	
+	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, int indents)
+	{
+		for (int i = 0; i < indents; i++)
+		{
+			builder.append('\t');
+		}
+		builder.append(key);
+		builder.append('=');
+		builder.append(value.getSaveRepresentation(indents + 1));
+		builder.append('\n');
 	}
 }

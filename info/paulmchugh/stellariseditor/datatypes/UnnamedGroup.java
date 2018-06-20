@@ -28,6 +28,7 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 		StringBuilder result = new StringBuilder();
 		result.append(indentString);
 		result.append('{');
+		result.append('\n');
 		
 		//apend all the children
 		for(T childElement : this)
