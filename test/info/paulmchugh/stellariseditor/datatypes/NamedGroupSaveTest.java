@@ -1,8 +1,6 @@
 package test.info.paulmchugh.stellariseditor.datatypes;
 
-import info.paulmchugh.stellariseditor.datatypes.DSInteger;
-import info.paulmchugh.stellariseditor.datatypes.NamedGroup;
-import info.paulmchugh.stellariseditor.datatypes.StateInvalidForSavingException;
+import info.paulmchugh.stellariseditor.datatypes.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,5 +36,21 @@ public class NamedGroupSaveTest
 		String actualString = outer.getSaveRepresentation(0);
 		
 		Assert.assertEquals(expectedString, actualString);
+	}
+	
+	@Test
+	public void test3_emptyGroupTest()
+	{
+		NamedGroup group = new NamedGroup();
+		
+		try
+		{
+			group.getSaveRepresentation(0);
+			Assert.fail("No StateInvalidForSavingException thrown after empty NamedGroup save was attempted.");
+		}
+		catch (StateInvalidForSavingException e)
+		{
+			Assert.assertEquals(SaveFailureReason.EMPTY_NAMED_GROUP, e.getSaveFailReason());
+		}
 	}
 }

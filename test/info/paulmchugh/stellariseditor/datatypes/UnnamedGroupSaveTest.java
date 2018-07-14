@@ -1,6 +1,7 @@
 package test.info.paulmchugh.stellariseditor.datatypes;
 
 import info.paulmchugh.stellariseditor.datatypes.DSInteger;
+import info.paulmchugh.stellariseditor.datatypes.SaveFailureReason;
 import info.paulmchugh.stellariseditor.datatypes.StateInvalidForSavingException;
 import info.paulmchugh.stellariseditor.datatypes.UnnamedGroup;
 import org.junit.Assert;
@@ -57,5 +58,21 @@ public class UnnamedGroupSaveTest
 		String actualString = parent.getSaveRepresentation(0);
 		
 		Assert.assertEquals(expectedString, actualString);
+	}
+	
+	@Test
+	public void test3_emptyGroupTest()
+	{
+		UnnamedGroup<DSInteger> group= new UnnamedGroup<>();
+		
+		try
+		{
+			group.getSaveRepresentation(0);
+			Assert.fail("No StateInvalidForSavingException thrown after empty UnnamedGroup save was attempted.");
+		}
+		catch (StateInvalidForSavingException e)
+		{
+			Assert.assertEquals(SaveFailureReason.EMPTY_UNNAMED_GROUP, e.getSaveFailReason());
+		}
 	}
 }
