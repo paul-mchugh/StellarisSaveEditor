@@ -2,13 +2,14 @@ package test.info.paulmchugh.stellariseditor.datatypes;
 
 import info.paulmchugh.stellariseditor.datatypes.DSInteger;
 import info.paulmchugh.stellariseditor.datatypes.NamedGroup;
+import info.paulmchugh.stellariseditor.datatypes.StateInvalidForSavingException;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class NamedGroupSaveTest
 {
 	@Test
-	public void testPrintGroup1()
+	public void testPrintGroup1() throws StateInvalidForSavingException
 	{
 		//just a named group with an int inside (that is l33t)
 		String expectedString = "{\n\tan_int=1337\n}";
@@ -22,7 +23,7 @@ public class NamedGroupSaveTest
 	}
 	
 	@Test
-	public void testPrintGroup2()
+	public void testPrintGroup2() throws StateInvalidForSavingException
 	{
 		//named group in named group
 		String expectedString = "{\n\tinside_grp={\n\t\tinside_int=9000\n\t}\n\tlook_an_int=1000\n}";

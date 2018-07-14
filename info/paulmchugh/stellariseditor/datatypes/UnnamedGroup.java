@@ -12,8 +12,11 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 	}
 	
 	@Override
-	public String getSaveRepresentation(int indents)
+	public String getSaveRepresentation(int indents) throws StateInvalidForSavingException
 	{
+		//if the group is empty then it can't be printed
+		if (this.size()==0) throw new StateInvalidForSavingException("An UnnamedGroup is invalid for saving.", SaveFailureReason.EMPTY_UNNAMED_GROUP);
+		
 		//each indent is one tab
 		//create the string of indents to prepend the elements inside
 		StringBuilder indentStringBuilder = new StringBuilder();
@@ -28,7 +31,7 @@ public class UnnamedGroup<T extends SaveElement> extends ArrayList<T> implements
 		StringBuilder result = new StringBuilder();
 		result.append('{');
 		
-		//apend all the children
+		//append all the children
 		for(T childElement : this)
 		{
 			//if if this UnnamedGroup's children are also groups (of either kind) then they all get their own line

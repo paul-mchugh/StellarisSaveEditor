@@ -151,8 +151,11 @@ public class NamedGroup implements StellarisGroup
 	}
 	
 	@Override
-	public String getSaveRepresentation(int indents)
+	public String getSaveRepresentation(int indents) throws StateInvalidForSavingException
 	{
+		//if the group is empty then it can't be printed
+		if (this.size()==0) throw new StateInvalidForSavingException("An UnnamedGroup is invalid for saving.", SaveFailureReason.EMPTY_NAMED_GROUP);
+		
 		//each indent is one tab
 		//create the string of indents to prepend the elements inside
 		StringBuilder indentStringBuilder = new StringBuilder();
@@ -197,7 +200,7 @@ public class NamedGroup implements StellarisGroup
 		return result.toString();
 	}
 	
-	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, String indentString, int indents)
+	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, String indentString, int indents) throws StateInvalidForSavingException
 	{
 		builder.append(indentString);
 		builder.append('\t');

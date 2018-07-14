@@ -8,5 +8,5 @@ public interface SaveElement
 	//the first line of the element's description should not be indented
 	//all subsequent lines should be indented by at least as many tabs as the parameter indents specifies
 	//if an element can be represented by a single line then it should not be indented
-	String getSaveRepresentation(int indents);
+	String getSaveRepresentation(int indents) throws StateInvalidForSavingException;
 }
