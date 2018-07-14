@@ -164,7 +164,6 @@ public class NamedGroup implements StellarisGroup
 		
 		//build the result string from the opening and closing group symbols and child elements
 		StringBuilder result = new StringBuilder();
-		result.append(indentString);
 		result.append('{');
 		result.append('\n');
 		
@@ -175,7 +174,7 @@ public class NamedGroup implements StellarisGroup
 			{
 				for (SaveElement value : keyValueMappings.get(key))
 				{
-					appendKVToStringBuilder(result, key, value, indents);
+					appendKVToStringBuilder(result, key, value, indentString, indents);
 				}
 			}
 		}
@@ -187,23 +186,21 @@ public class NamedGroup implements StellarisGroup
 			{
 				for (SaveElement value : keyValueMappings.get(key))
 				{
-					appendKVToStringBuilder(result, key, value, indents);
+					appendKVToStringBuilder(result, key, value, indentString, indents);
 				}
 			}
 		}
 		
-		
+		result.append(indentString);
 		result.append('}');
 		
 		return result.toString();
 	}
 	
-	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, int indents)
+	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, String indentString, int indents)
 	{
-		for (int i = 0; i < indents; i++)
-		{
-			builder.append('\t');
-		}
+		builder.append(indentString);
+		builder.append('\t');
 		builder.append(key);
 		builder.append('=');
 		builder.append(value.getSaveRepresentation(indents + 1));
