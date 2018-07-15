@@ -1,38 +1,39 @@
 package info.paulmchugh.stellariseditor.datatypes;
 
-public class DSInteger implements SaveElement
+public class DSFloat implements SaveElement
 {
-	private long value;
+	private double value;
 	
-	public DSInteger()
+	public DSFloat()
 	{
 		this(0);
 	}
 	
-	public DSInteger(int value)
+	public DSFloat(double value)
 	{
 		this.value = value;
 	}
 	
-	public long getValue()
+	public double getValue()
 	{
 		return value;
 	}
 	
-	public void setValue(long value)
+	public void setValue(double value)
 	{
 		this.value = value;
 	}
 	
+	
 	@Override
 	public SaveElementTypes getElementType()
 	{
-		return SaveElementTypes.INTEGER;
+		return SaveElementTypes.FLOATING_PT;
 	}
 	
 	@Override
 	public String getSaveRepresentation(int indents)
 	{
-		return Long.toString(value);
+		return Double.toString(value);
 	}
 }
