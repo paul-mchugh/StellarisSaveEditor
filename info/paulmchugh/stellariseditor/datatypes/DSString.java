@@ -33,6 +33,6 @@ public class DSString implements SaveElement
 	@Override
 	public String getSaveRepresentation(int indents)
 	{
-		return value;
+		return "\""+value+"\"";
 	}
 }
