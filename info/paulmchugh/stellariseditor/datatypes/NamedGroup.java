@@ -203,7 +203,13 @@ public class NamedGroup implements StellarisGroup
 	private void appendKVToStringBuilder(StringBuilder builder, String key, SaveElement value, String indentString, int indents) throws StateInvalidForSavingException
 	{
 		builder.append(indentString);
-		builder.append('\t');
+		//the following line is a nightmare and needs further explanation, however it works
+		//when the root is being printed we need its children to be at indent 0, so we pass -1 as the indent depth
+		//for the root so its children will be at depth 0.  We normally just print this groups indent in (indentString)
+		//then one more tab for the child's first line (the tab in the next line).  But, when we have an indent value
+		//of -1 we need the child to have zero tabs.  We obviously can't have a -1 tabs in the indentString, so if we
+		//are at -1 indents we don't apply the first line indent to make up for this.
+		if(indents>=0) builder.append('\t');
 		builder.append(key);
 		builder.append('=');
 		builder.append(value.getSaveRepresentation(indents + 1));
