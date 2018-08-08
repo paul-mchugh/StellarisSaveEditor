@@ -9,7 +9,7 @@ public class DSInteger implements SaveElement
 		this(0);
 	}
 	
-	public DSInteger(int value)
+	public DSInteger(long value)
 	{
 		this.value = value;
 	}
