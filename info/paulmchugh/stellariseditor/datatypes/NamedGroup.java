@@ -2,6 +2,7 @@ package info.paulmchugh.stellariseditor.datatypes;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class NamedGroup implements StellarisGroup
@@ -214,5 +215,22 @@ public class NamedGroup implements StellarisGroup
 		builder.append('=');
 		builder.append(value.getSaveRepresentation(indents + 1));
 		builder.append('\n');
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		NamedGroup that = (NamedGroup) o;
+		return count == that.count &&
+				Objects.equals(keyValueMappings, that.keyValueMappings) &&
+				Objects.equals(keyPrintOrder, that.keyPrintOrder);
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(keyValueMappings, keyPrintOrder, count);
 	}
 }

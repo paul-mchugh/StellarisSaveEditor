@@ -1,5 +1,7 @@
 package info.paulmchugh.stellariseditor.datatypes;
 
+import java.util.Objects;
+
 public class DSInteger implements SaveElement
 {
 	private long value;
@@ -34,5 +36,20 @@ public class DSInteger implements SaveElement
 	public String getSaveRepresentation(int indents)
 	{
 		return Long.toString(value);
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		DSInteger integer = (DSInteger) o;
+		return value == integer.value;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(value);
 	}
 }

@@ -1,5 +1,7 @@
 package info.paulmchugh.stellariseditor.datatypes;
 
+import java.util.Objects;
+
 public class DSFloat implements SaveElement
 {
 	private double value;
@@ -35,5 +37,20 @@ public class DSFloat implements SaveElement
 	public String getSaveRepresentation(int indents)
 	{
 		return Double.toString(value);
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof DSFloat)) return false;
+		DSFloat dsFloat = (DSFloat) o;
+		return Double.compare(dsFloat.value, value) == 0;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(value);
 	}
 }
